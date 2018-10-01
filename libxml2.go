@@ -4,6 +4,7 @@ package xsdvalidate
 #cgo CFLAGS: -std=c99
 #cgo pkg-config: libxml-2.0
 #include <string.h>
+#include <stdio.h>
 #include <libxml/xmlschemastypes.h>
 #include <errno.h>
 #include <malloc.h>
