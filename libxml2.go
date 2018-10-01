@@ -4,7 +4,6 @@ package xsdvalidate
 #cgo CFLAGS: -std=c99
 #cgo pkg-config: libxml-2.0
 #include <string.h>
-#include <stdio.h>
 #include <libxml/xmlschemastypes.h>
 #include <errno.h>
 #include <stdbool.h>
@@ -12,6 +11,20 @@ package xsdvalidate
 #define P_ERR_DEFAULT 1
 #define P_ERR_VERBOSE 2
 #define LIBXML_STATIC
+
+#ifdef __APPLE__
+#include <malloc/malloc.h>
+#else
+#include <malloc.h>
+#endif
+
+#ifdef __APPLE__
+#define MARCFS_MEMTRIM
+#else
+#define MARCFS_MEMTRIM          malloc_trim(64 * 1024 * 1024);
+#endif
+
+
 
 struct xsdParserResult {
 	xmlSchemaPtr schemaPtr;
