@@ -490,7 +490,7 @@ func gcTicker(d time.Duration, quit chan struct{}) {
 		select {
 		case <-ticker.C:
 			runtime.GC()
-			C.malloc_trim(0)
+			//C.malloc_trim(0)
 		case <-quit:
 			ticker.Stop()
 			return
